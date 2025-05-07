@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Reward extends Model
+{
+    /** @use HasFactory<\Database\Factories\RewardFactory> */
+    use HasFactory;
+
+    public function challenges()
+    {
+        return $this->hasMany(Challenge::class);
+    }
+}
