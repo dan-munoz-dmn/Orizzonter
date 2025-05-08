@@ -25,16 +25,15 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                
-                <span class="flex-1 ms-3 whitespace-nowrap">Kanban</span>
-                </a>
+                 <a href="{{ route('statistics.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+    <span class="flex-1 ms-3 whitespace-nowrap">estadisticas</span>
+</a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                
-                <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-                </a>
+            <a href="{{ route('interestplaces.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+    <span class="flex-1 ms-3 whitespace-nowrap">interestplaces</span>
+</a>
+
             </li>
             <li>
                 <a href="{{ route('users.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
