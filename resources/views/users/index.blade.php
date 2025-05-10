@@ -3,59 +3,65 @@
 @section('title', 'Lista de Usuarios')
 
 @section('content')
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Usuarios registrados</h1>
+<div class="container mx-auto px-6 py-8">
 
-    @if($users->isEmpty())
-        <div class="text-center text-gray-600">No hay usuarios por mostrar.</div>
-    @else
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach($users as $user)
-                <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition duration-300 flex flex-col justify-between">
-                    {{-- Encabezado --}}
-                    <div class="flex items-center space-x-4 mb-4">
-                        <div class="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-semibold">
-                            {{ strtoupper(substr($user->name, 0, 1)) }}
-                        </div>
-                        <div>
-                            <h2 class="text-lg font-semibold text-gray-800">{{ $user->name }}</h2>
-                            <p class="text-sm text-gray-600">{{ $user->email }}</p>
-                        </div>
-                    </div>
-
-                    {{-- Link a perfil --}}
-                    <div class="mt-2">
-                        <a href="{{ route('users.show', $user->id) }}"
-                           class="text-orange-600 hover:text-orange-800 font-medium transition duration-200">
-                            Ver perfil →
-                        </a>
-                    </div>
-
-                    {{-- Botones de acción --}}
-                    <div class="mt-4 flex space-x-2">
-                        <a href="{{ route('users.edit', $user->id) }}"
-                           class="flex-1 text-center px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition">
-                           Editar
-                        </a>
-
-                        <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                              class="flex-1"
-                              onsubmit="return confirm('¿Seguro que deseas eliminar a {{ $user->name }}?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                    class="w-full px-4 py-2 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition">
-                                Eliminar
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            @endforeach
+    {{-- Barra de búsqueda --}}
+    <div class="items-center">
+        @include('components.search')
+    </div>
+            <div>
+            <button id="view-cards" class="p-2 text-gray-500 hover:text-indigo-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6H20M4 12H20M4 18H20"></path></svg>
+            </button>
+            <button id="view-list" class="p-2 text-gray-500 hover:text-indigo-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"></path></svg>
+            </button>
         </div>
 
-        <div class="mt-8">
-            {{ $users->links() }} {{-- Asegúrate de estar usando paginate() en el controlador --}}
+    {{-- Contenedor de la lista de usuarios (la clase 'user-list-container' será clave) --}}
+    <div id="user-list-container" class="view-cards">
+        <div class="view-cards-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @include('includes.user-card', ['users' => $users])
         </div>
-    @endif
+    </div>
+
+    {{-- Paginación --}}
+    <div class="mt-8">
+        {{ $users->links() }}
+    </div>
+    {{-- Aquí vamos a incluir el contenido de la lista pero oculto inicialmente --}}
+    <div id="list-view-content" class="hidden list-view-container">
+        @include('includes.user-list', ['users' => $users])
+    </div>
+
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cardViewButton = document.getElementById('view-cards');
+        const listViewButton = document.getElementById('view-list');
+        const userListContainer = document.getElementById('user-list-container');
+        const listViewContent = document.getElementById('list-view-content');
+
+        // Guardamos una referencia al contenedor de las cards
+        const cardViewContainer = document.querySelector('.view-cards-container');
+
+        cardViewButton.addEventListener('click', function() {
+            userListContainer.classList.remove('view-list');
+            userListContainer.classList.add('view-cards');
+            // Restaurar el contenido original (vista de tarjetas)
+            userListContainer.innerHTML = cardViewContainer.outerHTML;
+        });
+
+        listViewButton.addEventListener('click', function() {
+            userListContainer.classList.remove('view-cards');
+            userListContainer.classList.add('view-list');
+            // Cargar el contenido de la vista de lista
+            userListContainer.innerHTML = listViewContent.innerHTML;
+        });
+
+
+
+    });
+</script>
 @endsection
