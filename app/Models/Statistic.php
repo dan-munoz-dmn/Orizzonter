@@ -9,6 +9,15 @@ class Statistic extends Model
 {
     /** @use HasFactory<\Database\Factories\StatisticFactory> */
     use HasFactory;
+    
+    protected $fillable = [
+        'total_rides',
+        'total_distance',
+        'total_time',
+        'calories_burned',
+        'average_speed',
+        'user_id',
+    ];
 
     public function user()
     {

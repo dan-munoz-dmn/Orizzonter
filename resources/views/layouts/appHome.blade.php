@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     @vite('resources/css/app.css')
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -28,13 +28,13 @@
                     <li>
                         <a href="{{ route('users.index') }}" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
                             <i class="material-icons mr-3">dashboard</i>
-                            <span class="sidebar-label">Users</span>
+                            <span class="sidebar-label">Usuarios</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <a href="{{ route('statistics.index') }}" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
                             <i class="material-icons mr-3">inbox</i>
-                            <span class="sidebar-label">Inbox</span>
+                            <span class="sidebar-label">Estadísticas</span>
                         </a>
                     </li>
                     <li>
