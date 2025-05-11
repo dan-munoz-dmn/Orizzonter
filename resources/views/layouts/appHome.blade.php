@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body class="text-white font-sans antialiased">
+<body class="font-sans antialiased">
 
     <button id="toggleSidebar"
         class="fixed top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded-md shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 transition"
@@ -17,14 +17,14 @@
     </button>
 
     <aside id="sidebar"
-        class="fixed top-0 left-0 z-40 h-screen bg-gray-100 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 w-64 md:translate-x-0"
+        class=" text-black fixed top-0 left-0 z-40 h-screen bg-gray-100 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 w-64 md:translate-x-0"
     >
         <div class="flex flex-col h-full justify-between">
             <div class="py-4 px-3">
-                <div class="flex items-center justify-center py-2">
-                    <span class="text-2xl font-semibold text-gray-800 dark:text-white transition-all duration-300 sidebar-label">ORIZZONTER</span>
+                <div class="flex items-center justify-center pt-6">
+                    <span class="text-2xl font-semibold text-gray-100 transition-all duration-300 sidebar-label">ORIZZONTER</span>
                 </div>
-                <ul class="mt-10 text-gray-700 space-y-4 dark:text-gray-300 font-medium">
+                <ul class="mt-10 text-gray-700 space-y-8 dark:text-gray-300 text-lg font-semibold ">
                     <li>
                         <a href="{{ route('users.index') }}" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
                             <i class="material-icons mr-3">dashboard</i>
@@ -50,7 +50,7 @@
                         </a>
                     </li>
                                         <li>
-                        <a href="{{ route('users.index') }}" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <a href="{{ route('users.index') }}" class="homeLinks">
                             <i class="material-icons mr-3">people</i>
                             <span class="sidebar-label">Usuarios</span>
                         </a>
@@ -83,10 +83,10 @@
     </aside>
 
     <div id="main-content" class="md:ml-64 transition-all duration-300">
-        <div class="p-6 bg-gray-100 dark:bg-gray-800 shadow-md">
+        <div class="p-6 bg-gray-100 shadow-md">
             <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Contenido Principal</h1>
         </div>
-        <div class="md:h-[775px] mx-5 mt-5 rounded-t-lg dark:bg-gray-800">
+        <div class="md:h-[775px] mx-5 mt-5 rounded-t-lg">
                 @yield('content')
         </div>
     </div>

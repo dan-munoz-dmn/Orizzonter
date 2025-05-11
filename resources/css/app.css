@@ -6,7 +6,7 @@
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
 .navbarLinks {
-    @apply text-black font-bold hover:text-sky-300 transition-all duration-300 ease-in-out tracking-wide hover:scale-105;
+    @apply text-black font-semibold text-lg hover:text-sky-300 transition-all duration-300 ease-in-out tracking-wide hover:scale-105;
 }
 
 .loginBtn {
@@ -15,4 +15,8 @@
 
 .movilMenu {
     @apply md:hidden absolute w-full bg-purple-950 overflow-hidden transition-all duration-300 opacity-0 invisible max-h-0;
+}
+
+.homeLinks {
+    @apply flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition;
 }
