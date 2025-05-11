@@ -23,7 +23,7 @@ Route::resource('interestplaces', InterestPlaceController::class);
 
 Route::resource('statistics', StatisticController::class);
 
-
+//Configurations
 Route::get('/configurations', [ConfigurationController::class, 'index'])->name('configurations');
 Route::get('/configurations/security', [ConfigurationController::class, 'security'])->name('configurations.security');
 Route::get('/configurations/privacy', [ConfigurationController::class, 'privacy'])->name('configurations.privacy');
