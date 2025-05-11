@@ -5,11 +5,11 @@
         <!-- Contenedor izquierdo -->
         <div class="w-1/2 flex flex-col justify-center items-center text-left ">
             <div class="w-[700px] pl-42">
-                <h1 class="text-5xl sm:text-7xl text-gray-900 drop-shadow" style="font-family: Orbitron;">
-                    ORIZZONTER
+                <h1 class="text-5xl font-semibold sm:text-8xl text-blue-950 drop-shadow">
+                    <span class="text-sky-800">O</span>RIZZONTER
                 </h1>
 
-                <p class="py-8 font-semibold text-2xl text-purple-800">
+                <p class="py-8 font-semibold text-2xl text-sky-800">
                     ¡Explora nuevos horizontes!
                 </p>
 
@@ -18,9 +18,8 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row sm:space-x-6 space-y-4 sm:space-y-0">
-                    <a class="py-2 px-8 sm:px-12 rounded-3xl bg-black text-white hover:bg-purple-700 transition-all duration-300 flex items-center justify-center shadow-lg cursor-pointer">
-                        Jugar ahora
-                        <i class="ml-2 bi bi-controller text-xl"></i>
+                    <a class="py-2 px-8 sm:px-12 rounded-3xl bg-blue-300 hover:bg-purple-700 transition-all duration-300 flex items-center justify-center shadow-lg cursor-pointer font-bold">
+                        Empieza!
                     </a>
                 </div>
             </div>
@@ -31,7 +30,7 @@
             <img
                 src="{{ asset('images/phoneImage.png') }}"
                 alt="image"
-                class="w-full max-w-md h-[600px] object-contain"
+                class="w-full max-w-md h-[560px] object-contain"
             />
         </div>
     </div>
