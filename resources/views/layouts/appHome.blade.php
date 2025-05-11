@@ -72,7 +72,7 @@
                 </button>
                 <div id="userDropdown" class="hidden absolute bottom-16 left-3 w-[calc(100%-1.5rem)] bg-white dark:bg-gray-800 rounded-md shadow-md z-50 border border-gray-200 dark:border-gray-700">
                     <a href="#" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">Perfil</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">Configuración</a>
+                    <a href="{{ route('configurations') }}" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">Configuración</a>
                     <form method="POST" action="{{ route('logout') }}" class="m-0">
                         @csrf
                         <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900 transition focus:outline-none">Cerrar sesión</button>
