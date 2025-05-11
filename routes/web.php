@@ -29,7 +29,7 @@ Route::resource('statistics', StatisticController::class);
 Route::get('pruebasomr',[OrmControllers::class,'consultas']);
 
 
-//Configurations
+//Configurations fget
 Route::get('/configurations', [ConfigurationController::class, 'index'])->name('configurations');
 Route::get('/configurations/security', [ConfigurationController::class, 'security'])->name('configurations.security');
 Route::get('/configurations/privacy', [ConfigurationController::class, 'privacy'])->name('configurations.privacy');
