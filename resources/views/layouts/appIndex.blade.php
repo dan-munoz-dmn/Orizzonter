@@ -6,9 +6,20 @@
     <title>Document</title>
     @vite('resources/css/app.css')
 </head>
-<body>
-    @include('includes.header')
-      <div class="flex items-center justify-center bg-sky-500 text-3xl font-bold h-[750px]"><span class="border-black border-4 p-6 rounded-xl bg-sky-700 text-white">Hi CodeSolutions Team</span></div>
+<body class="overflow-y-scroll scrollbar-hide h-screen" style="font-family: Poppins, sans-serif;">
+    
+    <div class="flex flex-col min-h-screen h-[1100px] bg-[url('/public/images/heroImage.jpg')] bg-no-repeat bg-cover bg-[position:center_-190px] relative">
+        @include('includes.header')
+        @include('includes.hero')
+    </div>
+
+    @include('includes.whatIs')
+    @include('includes.objetives')
+    @include('includes.features')
+    @include('includes.city')
+    @include('includes.download')
     @include('includes.footer')
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>

@@ -1,18 +1,40 @@
-<header class="bg-gray-800 text-white">
-  <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
-    <a href="#">
-      <div class="text-2xl font-bold">
-        MiLogo
-      </div>
-    </a>
-    <nav class="flex items-center space-x-6">
-      <a href="#" class="hover:text-gray-400 transition">Companies</a>
-      <a href="#" class="hover:text-gray-400 transition">Corps</a>
-      <a href="#" class="hover:text-gray-400 transition">Barracks</a>
+{{-- resources/views/components/navbar.blade.php --}}
+<nav id="mainNavbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
+    <div class="flex justify-between items-center sm:px-12 sm:py-4 px-4 py-3">
+        {{-- Logo --}}
+        <div class="flex items-center gap-2 font-bold pl-12">
+            <i class="bi bi-bicycle text-5xl"></i>
+        </div>
 
-      <a href="{{ route('login') }}">
-      <button type="button" class="text-white w-[120px] font-bold bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">SingIn</button>
-      </a>
-    </nav>
-  </div>
-</header>
+        {{-- Links desktop --}}
+        <div class="hidden md:flex md:items-center">
+            <ul class="flex space-x-8 px-12">
+                <li><a href="#" class="navbarLinks">Inicio</a></li>
+                <li><a href="#" class="navbarLinks">Acerca de</a></li>
+                <li><a href="#" class="navbarLinks">Servicios</a></li>
+                <li><a href="#" class="navbarLinks">Contacto</a></li>
+            </ul>
+
+            <a href="/login" class="loginBtn">
+                Iniciar sesión
+            </a>
+        </div>
+
+        {{-- Botón hamburguesa (para móvil) --}}
+        <button id="mobileMenuButton" type="button" aria-label="Abrir/cerrar menú" class="md:hidden text-black p-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+
+    {{-- Menú móvil (inicialmente oculto) --}}
+    <div id="mobileMenu" class="movilMenu">
+        <ul class="flex flex-col py-2">
+            <li><a href="#" class="navbarLinks">Inicio</a></li>
+            <li><a href="#" class="navbarLinks">Acerca de</a></li>
+            <li><a href="#" class="navbarLinks">Servicios</a></li>
+            <li><a href="#" class="navbarLinks">Contacto</a></li>
+        </ul>
+    </div>
+</nav>
