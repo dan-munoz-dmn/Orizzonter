@@ -44,9 +44,9 @@
                         </a>
                     </li>
                                         <li>
-                        <a href="{{ route('users.index') }}" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <a href="{{ route('interestplaces.index') }}" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
                             <i class="material-icons mr-3">people</i>
-                            <span class="sidebar-label">Usuarios</span>
+                            <span class="sidebar-label">interestplaces</span>
                         </a>
                     </li>
                                         <li>

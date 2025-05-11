@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InterestPlaceController;
 use App\Http\Controllers\StatisticController;
-
+use App\Http\Controllers\OrmControllers;
 Route::get('/', function () {
     return view('index');
 });
@@ -21,3 +21,8 @@ Route::resource('interestplaces', InterestPlaceController::class);
 
 
 Route::resource('statistics', StatisticController::class);
+
+
+
+// ruta para los omr 
+Route::get('pruebasomr',[OrmControllers::class,'consultas']);
