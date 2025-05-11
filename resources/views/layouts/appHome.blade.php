@@ -26,25 +26,25 @@
                 </div>
                 <ul class="mt-10 text-gray-700 space-y-8 dark:text-gray-300 text-lg font-semibold ">
                     <li>
-                        <a href="{{ route('users.index') }}" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <a href="{{ route('users.index') }}" class="homeLinks">
                             <i class="material-icons mr-3">dashboard</i>
                             <span class="sidebar-label">Usuarios</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('statistics.index') }}" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <a href="{{ route('statistics.index') }}" class="homeLinks">
                             <i class="material-icons mr-3">inbox</i>
                             <span class="sidebar-label">Estadísticas</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('users.index') }}" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <a href="{{ route('users.index') }}" class="homeLinks">
                             <i class="material-icons mr-3">people</i>
                             <span class="sidebar-label">Usuarios</span>
                         </a>
                     </li>
                                         <li>
-                        <a href="{{ route('users.index') }}" class="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <a href="{{ route('users.index') }}" class="homeLinks">
                             <i class="material-icons mr-3">people</i>
                             <span class="sidebar-label">Usuarios</span>
                         </a>
