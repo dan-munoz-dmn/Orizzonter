@@ -31,4 +31,16 @@ class Profile extends Model
         return $this->hasOne(Personalization::class);
     }
 
+    protected $fillable = [
+    'gender',
+    'profile_ph',
+    'description',
+    'nickname',
+    'cyclist_type',
+    'busy_routes',
+    'achievements',
+    'user_id',
+    'interest_place_id',
+    'configuration_id',
+    ];
 }

@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InterestPlaceController;
 use App\Http\Controllers\StatisticController;
+use App\Http\Controllers\OrmControllers;
+use App\Http\Controllers\ConfigurationController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('index');
@@ -16,8 +19,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('users', UserController::class);
 
+Route::resource('profiles', ProfileController::class);
+
 Route::resource('interestplaces', InterestPlaceController::class);
 
-
-
 Route::resource('statistics', StatisticController::class);
+
+
+
+// ruta para los omr 
+Route::get('pruebasomr',[OrmControllers::class,'consultas']);
+
+
+//Configurations fget
+Route::get('/configurations', [ConfigurationController::class, 'index'])->name('configurations');

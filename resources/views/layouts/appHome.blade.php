@@ -6,76 +6,88 @@
     <title>Home</title>
     @vite('resources/css/app.css')
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar-label {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
 <body class="font-sans antialiased">
 
     <button id="toggleSidebar"
-        class="fixed top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded-md shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 transition"
+        class="fixed top-4 left-4 z-50 p-3 bg-white rounded-md shadow-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
         aria-label="Abrir/cerrar menú">
-        <svg id="iconOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-        <svg id="iconClose" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        <svg id="iconOpen" class="w-7 h-7 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <svg id="iconClose" class="w-7 h-7 text-gray-800 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
     </button>
 
     <aside id="sidebar"
-        class=" text-black fixed top-0 left-0 z-40 h-screen bg-gray-100 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 w-64 md:translate-x-0"
+        class="text-black fixed top-0 left-0 z-40 h-screen bg-white border-r border-gray-200 transition-all duration-300 w-64 md:translate-x-0 shadow-xl"
     >
         <div class="flex flex-col h-full justify-between">
-            <div class="py-4 px-3">
-                <div class="flex items-center justify-center pt-6">
-                    <span class="text-2xl font-semibold text-gray-100 transition-all duration-300 sidebar-label">ORIZZONTER</span>
+            <div class="py-6 px-4">
+                <div class="flex items-center justify-center">
+                    <span class="text-2xl font-semibold text-blue-600 transition-all duration-300 sidebar-label">ORIZZONTER</span>
                 </div>
-                <ul class="mt-10 text-gray-700 space-y-8 dark:text-gray-300 text-lg font-semibold ">
+                <ul class="mt-12 space-y-6 text-gray-700 text-lg font-medium">
                     <li>
-                        <a href="{{ route('users.index') }}" class="homeLinks">
-                            <i class="material-icons mr-3">dashboard</i>
+                        <a href="{{ route('users.index') }}" class="flex items-center gap-4 p-2 rounded-md hover:bg-gray-100 transition-colors duration-200 homeLinks">
+                            <i class="material-icons text-blue-500">dashboard</i>
                             <span class="sidebar-label">Usuarios</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('statistics.index') }}" class="homeLinks">
-                            <i class="material-icons mr-3">inbox</i>
+                        <a href="{{ route('profiles.index') }}" class="flex items-center gap-4 p-2 rounded-md hover:bg-gray-100 transition-colors duration-200 homeLinks">
+                            <i class="material-icons text-green-500">people</i>
+                            <span class="sidebar-label">Perfiles</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('statistics.index') }}" class="flex items-center gap-4 p-2 rounded-md hover:bg-gray-100 transition-colors duration-200 homeLinks">
+                            <i class="material-icons text-purple-500">inbox</i>
                             <span class="sidebar-label">Estadísticas</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('users.index') }}" class="homeLinks">
-                            <i class="material-icons mr-3">people</i>
+                        <a href="{{ route('users.index') }}" class="flex items-center gap-4 p-2 rounded-md hover:bg-gray-100 transition-colors duration-200 homeLinks">
+                            <i class="material-icons text-yellow-500">people</i>
                             <span class="sidebar-label">Usuarios</span>
                         </a>
                     </li>
-                                        <li>
-                        <a href="{{ route('users.index') }}" class="homeLinks">
-                            <i class="material-icons mr-3">people</i>
-                            <span class="sidebar-label">Usuarios</span>
+                    <li>
+                        <a href="{{ route('interestplaces.index') }}" class="flex items-center gap-4 p-2 rounded-md hover:bg-gray-100 transition-colors duration-200 homeLinks">
+                            <i class="material-icons text-red-500">map</i>
+                            <span class="sidebar-label">Lugares</span>
                         </a>
                     </li>
-                                        <li>
-                        <a href="{{ route('users.index') }}" class="homeLinks">
-                            <i class="material-icons mr-3">people</i>
-                            <span class="sidebar-label">Usuarios</span>
-                        </a>
-                    </li>
-                    </ul>
+                </ul>
             </div>
 
-            <div class="relative p-3 border-t border-gray-200 dark:border-gray-700">
-                <button id="userMenuBtn" class="w-full flex items-center justify-between p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none">
+            <div class="relative p-4 border-t border-gray-200">
+                <button id="userMenuBtn" class="w-full flex items-center justify-between p-2 rounded-md hover:bg-gray-100 transition-colors duration-200 focus:outline-none">
                     <div class="flex items-center gap-3">
-                        <!-- <img src="https://i.pravatar.cc/40" class="rounded-full w-8 h-8" alt="avatar" /> -->
-                          <span class="text-sm font-semibold bg-amber-500 w-8 h-8 rounded-2xl">U</span>
+                         <span class="font-semibold text-blue-500 w-9 h-9 rounded-full flex items-center justify-center border-2 border-blue-500">
+                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                         </span>
                         <div class="flex-col text-left sidebar-label">
-                            <p class="text-sm font-semibold text-gray-800 dark:text-white">{{ Auth::user()->name }}</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">Opciones</p>
+                            <p class="text-sm font-semibold text-gray-800">{{ Auth::user()->name }}</p>
+                            <p class="text-xs text-gray-500">Opciones</p>
                         </div>
                     </div>
-                    <i class="material-icons text-gray-500 dark:text-gray-400">expand_more</i>
+                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                 </button>
-                <div id="userDropdown" class="hidden absolute bottom-16 left-3 w-[calc(100%-1.5rem)] bg-white dark:bg-gray-800 rounded-md shadow-md z-50 border border-gray-200 dark:border-gray-700">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">Perfil</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">Configuración</a>
+                <div id="userDropdown" class="hidden absolute bottom-16 left-3 w-[calc(100%-1.5rem)] bg-white rounded-md shadow-lg z-50 border border-gray-200">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">Perfil</a>
+                    <a href="{{ route('configurations') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">Configuración</a>
                     <form method="POST" action="{{ route('logout') }}" class="m-0">
                         @csrf
-                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900 transition focus:outline-none">Cerrar sesión</button>
+                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-100 transition-colors duration-200 focus:outline-none">Cerrar sesión</button>
                     </form>
                 </div>
             </div>
@@ -83,11 +95,12 @@
     </aside>
 
     <div id="main-content" class="md:ml-64 transition-all duration-300">
-        <div class="p-6 bg-gray-100 shadow-md">
-            <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Contenido Principal</h1>
+        <div class="p-6 bg-gray-50 shadow-md rounded-md">
+            <h1 class="text-xl font-semibold text-gray-800">@yield('title')</h1>
+            @yield('search_content')
         </div>
         <div class="md:h-[775px] mx-5 mt-5 rounded-t-lg">
-                @yield('content')
+            @yield('content')
         </div>
     </div>
 
@@ -101,9 +114,8 @@
         const userDropdown = document.getElementById('userDropdown');
         const mainContent = document.getElementById('main-content');
 
-        let isExpanded = window.innerWidth >= 768; // Inicialmente expandido en pantallas grandes
+        let isExpanded = window.innerWidth >= 768;
 
-        // Función para actualizar el estado del sidebar y el contenido
         function updateSidebarState() {
             if (window.innerWidth >= 768) {
                 sidebar.classList.remove('-translate-x-full');
@@ -111,13 +123,13 @@
                 sidebar.style.width = isExpanded ? '16rem' : '4.5rem';
                 sidebarLabels.forEach(label => label.classList.toggle('hidden', !isExpanded));
                 mainContent.classList.toggle('md:ml-64', isExpanded);
-                mainContent.classList.toggle('md:ml-16', !isExpanded);
+                mainContent.classList.toggle('md:ml-18', !isExpanded); // Adjusted for collapsed width
             } else {
                 sidebar.classList.add('-translate-x-full');
-                sidebar.classList.remove('translate-x-0', 'w-64', 'w-16');
-                sidebar.style.width = ''; // Resetear el ancho para el off-canvas
+                sidebar.classList.remove('translate-x-0', 'w-64', 'w-18'); // Removed w-16 and added w-18
+                sidebar.style.width = '';
                 sidebarLabels.forEach(label => label.classList.add('hidden'));
-                mainContent.classList.remove('md:ml-64', 'md:ml-16');
+                mainContent.classList.remove('md:ml-64', 'md:ml-18'); // Removed md:ml-16 and added md:ml-18
                 mainContent.classList.add('ml-0');
             }
 
@@ -138,7 +150,6 @@
             if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
                 userDropdown.classList.add('hidden');
             }
-            // Cierra el sidebar si se hace clic fuera de él en pantallas pequeñas
             if (window.innerWidth < 768 && isExpanded && !sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
                 isExpanded = false;
                 updateSidebarState();
@@ -149,7 +160,6 @@
             updateSidebarState();
         });
 
-        // Inicializar el estado al cargar la página
         updateSidebarState();
     </script>
 

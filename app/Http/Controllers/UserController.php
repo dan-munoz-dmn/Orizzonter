@@ -14,17 +14,16 @@ class UserController extends Controller
     public function index(Request $request)
     {
 
-        $query = User::query();
+        $search = $request->input('search');
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where(function($q) use ($search) {
-                $q->where('name', 'LIKE', "%{$search}%")
-                  ->orWhere('email', 'LIKE', "%{$search}%");
-            });
-        }
+        $users = User::query()
+            ->when($search, function ($query, $search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
+            })
+            ->paginate(9)
+            ->appends(['search' => $search]); // Esto es crucial para mantener el término de búsqueda en la paginación
 
-        $users = User::paginate(9);
         return view('users.index', compact('users'));
     }
 
