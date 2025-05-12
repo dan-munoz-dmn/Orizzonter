@@ -3,7 +3,7 @@
 @section('content')
 <div id="background" class="fixed inset-0 bg-cover bg-center flex items-center justify-center opacity-0 transition-opacity duration-700"
      style="background-image: url('https://images.unsplash.com/photo-1534146789009-76ed5060ec70?q=80&w=1909&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-     <div id="login-form" class="opacity-0 translate-y-5 transition-all duration-700 ease-out bg-white bg-opacity-90 backdrop-blur-md shadow-2xl rounded-xl p-8 w-full max-w-md">
+     <div id="login-form" class="animate__animated animate__fadeInDown bg-white bg-opacity-90 backdrop-blur-md shadow-2xl rounded-xl p-8 w-full max-w-md">
 
         <div class="text-center text-blue-700 font-bold text-2xl mb-6">
             {{ __('Iniciar Sesión') }}
@@ -37,57 +37,53 @@
                 <input type="checkbox" name="remember" id="remember" class="mr-2 text-blue-600" {{ old('remember') ? 'checked' : '' }}>
                 <label for="remember" class="text-sm text-blue-900">{{ __('Recordarme') }}</label>
             </div>
-               
-            
-            {{-- Botón --}}
-            <div class="flex items-center">
+
+            {{-- Botones --}}
+            <div class="flex items-center justify-center space-x-1  ">
                 <button type="submit"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
+                    class="bg-blue-600 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
                     {{ __('Entrar') }}
                 </button>
-                {{-- Botón --}}
                 <a href="{{ route('register') }}"
                     class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 m-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
                     {{ __('Registrar') }}
                 </a>
             </div>
 
-            <div class="w-full flex justify-center items-center">
-                <label for="remember" class="text-center   text-sm text-blue-900 ">{{ __('Iniciar secion con') }}</label>
+            {{-- Iniciar con --}}
+            <div class="w-full text-center mt-6">
+                <label class="block text-sm text-blue-900 mb-2">{{ __('Iniciar sesión con') }}</label>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="text-blue-600 text-2xl hover:scale-125 transition-transform duration-300">
+                        <i class="bi bi-google"></i>
+                    </a>
+                    <a href="#" class="text-gray-800 text-2xl hover:scale-125 transition-transform duration-300">
+                        <i class="bi bi-github"></i>
+                    </a>
+                </div>
             </div>
-              
 
-            <i class="bi bi-pentagon-fill"></i>
-            <i class="bi bi-pentagon-fill"></i>
-
-            <!-- contraseña -->
-            <div>
+            {{-- Recuperar contraseña alineado a la izquierda --}}
+            <div class="mt-6 text-left">
                 @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}" class="text-sm text-blue-600 hover:underline">
                         {{ __('¿Olvidaste tu contraseña?') }}
                     </a>
                 @endif
             </div>
-
         </form>
     </div>
 </div>
 @endsection
+
 @push('scripts')
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById("login-form");
         const bg = document.getElementById("background");
 
         // Mostrar fondo con transición
         bg.classList.remove("opacity-0");
         bg.classList.add("opacity-100");
-
-        // Animar formulario con leve retraso
-        setTimeout(() => {
-            form.classList.remove("opacity-0", "translate-y-5");
-            form.classList.add("opacity-100", "translate-y-0");
-        }, 300);
 
         // Prevenir navegación hacia atrás
         if (window.history && window.history.pushState) {
