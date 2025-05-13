@@ -8,16 +8,17 @@ use Illuminate\Http\Request;
 class StatisticController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de todas las estadísticas.
+     * Incluye la relacion con el modelo User para mostrar informacion del usuario.
      */
     public function index()
-{
-    $statistics = Statistic::with('user')->get();
-    return view('statistics.index', compact('statistics'));
-}
+    {
+        $statistics = Statistic::with('user')->get();
+        return view('statistics.index', compact('statistics'));
+    }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear una nueva estadistica.
      */
     public function create()
     {
@@ -25,31 +26,32 @@ class StatisticController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena una nueva estadistica en la base de datos.
      */
-   public function store(Request $request)
-{
-    // Validación de los datos del formulario
-    $validated = $request->validate([
-        'total_rides' => 'required|integer',
-        'total_distance' => 'required|numeric',
-        'total_time' => 'required|integer',
-        'calories_burned' => 'required|numeric',
-        'average_speed' => 'required|numeric',
-        'user_id' => 'required|exists:users,id',  // Validar que user_id existe en la tabla users
-    ]);
+    public function store(Request $request)
+    {
+        // Validacion de los datos del formulario
+        $validated = $request->validate([
+            'total_rides' => 'required|integer',
+            'total_distance' => 'required|numeric',
+            'total_time' => 'required|integer',
+            'calories_burned' => 'required|numeric',
+            'average_speed' => 'required|numeric',
+            'user_id' => 'required|exists:users,id', // Se asegura de que el usuario exista
+        ]);
 
-    $validated['user_id'] = auth()->id(); // Aquí se asigna el ID del usuario autenticado
+        // Se asegura de que el user_id corresponde al usuario autenticado
+        $validated['user_id'] = auth()->id();
 
-    // Crear la estadística
-    Statistic::create($validated);
+        // Crea una nueva estadistica con los datos validados
+        Statistic::create($validated);
 
-    // Redirigir a la vista de estadísticas con un mensaje de éxito
-    return redirect()->route('statistics.index')->with('success', 'Estadística creada correctamente');
-}
+        // Redirige al indice con un mensaje de exito
+        return redirect()->route('statistics.index')->with('success', 'Estadística creada correctamente');
+    }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar una estadistica específica.
      */
     public function edit(Statistic $statistic)
     {
@@ -57,11 +59,11 @@ class StatisticController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza una estadistica especifica en la base de datos.
      */
     public function update(Request $request, Statistic $statistic)
     {
-        // Validar los datos
+        // Validacion de los datos actualizados
         $request->validate([
             'total_rides' => 'required|integer',
             'total_distance' => 'required|numeric',
@@ -70,19 +72,21 @@ class StatisticController extends Controller
             'average_speed' => 'required|numeric',
         ]);
 
-        // Actualizar la estadística
+        // Actualiza la estadistica con los nuevos valores
         $statistic->update($request->all());
 
+        // Redirige al indice con un mensaje de exito
         return redirect()->route('statistics.index')->with('success', 'Estadística actualizada correctamente.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina una estadistica especifica de la base de datos.
      */
     public function destroy(Statistic $statistic)
     {
         $statistic->delete();
 
+        // Redirige al indice con un mensaje de exito
         return redirect()->route('statistics.index')->with('success', 'Estadística eliminada correctamente.');
     }
 }
