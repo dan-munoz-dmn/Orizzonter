@@ -1,11 +1,13 @@
 @extends('layouts.appHome')
 
-@section('title', 'profiles')
+@section('search_content')
+    @include('components.search')
+@endsection
 
 @section('content')
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <div class="px-6 py-4 bg-gradient-to-r from-blue-200 to-blue-500 text-white">
-            <h2 class="text-xl font-semibold">Explora los Perfiles de Ciclistas</h2>
+    <div class="bg-white">
+        <div class="px-6 py-6 text-center">
+            <h2 class="text-3xl font-semibold">Explora los Perfiles de Ciclistas</h2>
             <p class="text-sm mt-1">Descubre y conecta con otros apasionados del ciclismo.</p>
         </div>
 

@@ -5,7 +5,7 @@
     'value' => request('search'),
 ])
 
-<form method="GET" action="{{ $action }}" class="flex items-center">
+<form method="GET" action="{{ $action }}" class="flex w-1/2 items-center">
     <div class="flex-1 relative rounded-md shadow-sm">
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
