@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +26,8 @@ Route::resource('interestplaces', InterestPlaceController::class);
 
 Route::resource('statistics', StatisticController::class);
 
+Route::resource('announcements', AnnouncementController::class);
 
-
-// ruta para los omr 
 Route::get('pruebasomr',[OrmControllers::class,'consultas']);
 
-//Configurations fget
 Route::get('/configurations', [ConfigurationController::class, 'index'])->name('configurations');
