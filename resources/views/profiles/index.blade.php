@@ -1,22 +1,19 @@
-@extends('layouts.appHome')
+@extends('layouts.appHome') {{-- Extiende el layout principal --}}
 
-@section('title', 'profiles')
+@section('title', 'profiles') {{-- Título de la sección --}}
 
 @section('content')
-    <!-- Contenedor principal con fondo blanco y sombra -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
-
-        <!-- Encabezado del componente con fondo  -->
+        <!-- Encabezado con gradiente y título -->
         <div class="px-6 py-4 bg-gradient-to-r from-blue-200 to-blue-500 text-white">
             <h2 class="text-xl font-semibold">Explora los Perfiles de Ciclistas</h2>
             <p class="text-sm mt-1">Descubre y conecta con otros apasionados del ciclismo.</p>
         </div>
 
         <div class="p-6">
-            <!-- Boton para crear un nuevo perfil -->
+            <!-- Botón para crear nuevo perfil -->
             <div class="mb-4">
                 <a href="{{ route('profiles.create') }}" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out">
-                    <!-- Icono de agregar -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
@@ -24,7 +21,7 @@
                 </a>
             </div>
 
-            <!-- Mensaje de exito tras realizar una accion -->
+            <!-- Mensaje de éxito al crear/editar/eliminar -->
             @if (session('success'))
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
                     <strong class="font-bold">¡Éxito!</strong>
@@ -32,40 +29,42 @@
                 </div>
             @endif
 
-            <!-- Grid que contiene las tarjetas de perfil -->
+            <!-- Lista de perfiles en una grilla responsive -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @forelse ($profiles as $profile)
-                    <!-- Tarjeta individual de perfil -->
+                    <!-- Tarjeta individual del perfil -->
                     <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 ease-in-out">
                         <div class="relative">
-                            <!-- Imagen del perfil o icono por defecto -->
+                            <!-- Mostrar foto de perfil si existe -->
                             @if ($profile->profile_ph)
                                 <img src="{{ asset('storage/' . $profile->profile_ph) }}" alt="{{ $profile->nickname }}" class="w-full h-48 object-cover">
                             @else
+                                <!-- Icono por defecto si no hay imagen -->
                                 <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
-                                    <!-- Icono de perfil por defecto -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
                                 </div>
                             @endif
-                            <!-- Etiqueta del tipo de ciclista -->
+                            <!-- Tipo de ciclista -->
                             <span class="absolute top-2 right-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $profile->cyclist_type }}</span>
                         </div>
+
                         <div class="p-4">
-                            <!-- Nombre del perfil y nombre del usuario -->
+                            <!-- Nombre del perfil -->
                             <h3 class="text-lg font-semibold text-gray-800">{{ $profile->nickname }}</h3>
+                            <!-- Nombre del usuario dueño del perfil -->
                             <p class="text-sm text-gray-600 mt-1">Usuario: {{ $profile->user->name }}</p>
 
-                            <!-- Descripcion si existe -->
+                            <!-- Descripción del perfil si existe -->
                             @if ($profile->description)
                                 <p class="text-gray-700 mt-2 text-sm">{{ Str::limit($profile->description, 60) }}</p>
                             @endif
 
-                            <!-- Botones de accion: Ver, Editar, Eliminar -->
+                            <!-- Acciones: ver, editar, eliminar -->
                             <div class="mt-3 flex justify-between items-center">
                                 <div class="flex space-x-2">
-                                    <!-- Boton Ver -->
+                                    <!-- Botón ver perfil -->
                                     <a href="{{ route('profiles.show', $profile) }}" class="inline-flex items-center text-indigo-500 hover:text-indigo-700 font-semibold text-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -73,7 +72,7 @@
                                         </svg>
                                         Ver
                                     </a>
-                                    <!-- Boton Editar -->
+                                    <!-- Botón editar perfil -->
                                     <a href="{{ route('profiles.edit', $profile) }}" class="inline-flex items-center text-yellow-500 hover:text-yellow-700 font-semibold text-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15.828 9 13.001l-1.414 1.414L10.586 17.243" />
@@ -81,7 +80,7 @@
                                         Editar
                                     </a>
                                 </div>
-                                <!-- Boton Eliminar con confirmacion -->
+                                <!-- Formulario para eliminar perfil -->
                                 <form action="{{ route('profiles.destroy', $profile) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
@@ -96,12 +95,14 @@
                         </div>
                     </div>
                 @empty
-                    <!-- Mensaje cuando no hay perfiles -->
+                    <!-- Mensaje si no hay perfiles -->
                     <div class="col-span-full text-center py-8">
                         <p class="text-gray-600">Aún no hay perfiles registrados. ¡Crea el primero!</p>
                     </div>
                 @endforelse
             </div>
+
+            <!-- Paginación -->
             <div class="mt-8">
                 {{ $profiles->links() }}
             </div>

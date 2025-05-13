@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
-use App\Models\User; // Asegúrate de importar el modelo User
-use App\Models\InterestPlace; // Asegúrate de importar el modelo InterestPlace
-use App\Models\Configuration; // Asegúrate de importar el modelo Configuration
+use App\Models\User; 
+use App\Models\InterestPlace; 
+use App\Models\Configuration; 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage; // Para manejar la carga de archivos
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de perfiles con sus relaciones cargadas.
      */
     public function index()
     {
@@ -22,24 +22,26 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo perfil.
      */
     public function create()
     {
-        $users = User::all()->pluck('name', 'id'); // Obtener usuarios para el select
-        $interestPlaces = InterestPlace::all()->pluck('name', 'id'); // Obtener lugares de interés
-        $configurations = Configuration::all()->pluck('name', 'id'); // Obtener configuraciones
+        // Obtener datos necesarios para los selects del formulario
+        $users = User::all()->pluck('name', 'id');
+        $interestPlaces = InterestPlace::all()->pluck('name', 'id');
+        $configurations = Configuration::all()->pluck('name', 'id');
         return view('profiles.create', compact('users', 'interestPlaces', 'configurations'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena un nuevo perfil en la base de datos.
      */
     public function store(Request $request)
     {
+        // Valida los datos del formulario
         $request->validate([
             'gender' => 'nullable|string|max:20',
-            'profile_ph' => 'nullable|image|max:2048', // Ejemplo de validación para la imagen
+            'profile_ph' => 'nullable|image|max:2048',
             'description' => 'nullable|string',
             'nickname' => 'required|string|max:50|unique:profiles,nickname',
             'cyclist_type' => 'required|string|max:50',
@@ -48,30 +50,34 @@ class ProfileController extends Controller
             'user_id' => 'required|exists:users,id',
             'interest_place_id' => 'nullable|exists:interest_places,id',
             'configuration_id' => 'nullable|exists:configurations,id',
-            'interest_places' => 'nullable|array', // Para la relación muchos a muchos
+            'interest_places' => 'nullable|array',
         ]);
 
+        // Crear una nueva instancia de perfil
         $profile = new Profile($request->except('profile_ph', 'interest_places'));
 
+        // Manejar el almacenamiento de la imagen
         if ($request->hasFile('profile_ph')) {
             $path = $request->file('profile_ph')->store('profiles', 'public');
-            // investigar sobre esto
             $path = storage_path('app/public/profiles');
             chmod($path, 0775);
             $profile->profile_ph = $path;
         }
 
+        // Guardar el perfil en la base de datos
         $profile->save();
 
+        // Asociar lugares de interes adicionales 
         if ($request->has('interest_places')) {
             $profile->interestPlaces()->attach($request->interest_places);
         }
 
+        // Redirigir a la lista con mensaje de éxito
         return redirect()->route('profiles.index')->with('success', 'Perfil creado exitosamente.');
     }
 
     /**
-     * Display the specified resource.
+     * Muestra los detalles de un perfil específico.
      */
     public function show(Profile $profile): View
     {
@@ -79,10 +85,11 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un perfil existente.
      */
     public function edit(Profile $profile)
     {
+        // Obtener datos necesarios para los selects del formulario
         $users = User::all()->pluck('name', 'id');
         $interestPlaces = InterestPlace::all()->pluck('name', 'id');
         $configurations = Configuration::all()->pluck('name', 'id');
@@ -90,10 +97,11 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un perfil en la base de datos.
      */
     public function update(Request $request, Profile $profile)
     {
+        // Validar los datos del formulario
         $request->validate([
             'gender' => 'nullable|string|max:20',
             'profile_ph' => 'nullable|image|max:2048',
@@ -108,10 +116,11 @@ class ProfileController extends Controller
             'interest_places' => 'nullable|array',
         ]);
 
+        // Actualizar los datos del perfil 
         $profile->fill($request->except('profile_ph', 'interest_places'));
 
+        // Si se subió nueva imagen, eliminar la anterior y guardar la nueva
         if ($request->hasFile('profile_ph')) {
-            // Eliminar la foto anterior si existe
             if ($profile->profile_ph) {
                 Storage::disk('public')->delete($profile->profile_ph);
             }
@@ -119,27 +128,34 @@ class ProfileController extends Controller
             $profile->profile_ph = $path;
         }
 
+        // Guardar los cambios del perfil
         $profile->save();
 
+        // Sincronizar lugares de interés adicionales
         if ($request->has('interest_places')) {
             $profile->interestPlaces()->sync($request->interest_places);
         } else {
-            $profile->interestPlaces()->detach();
+            $profile->interestPlaces()->detach(); // Eliminar asociaciones si se eliminan del formulario
         }
 
+        // Redirigir a la lista con mensaje de éxito
         return redirect()->route('profiles.index')->with('success', 'Perfil actualizado exitosamente.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina un perfil de la base de datos.
      */
     public function destroy(Profile $profile)
     {
-        // Eliminar la foto si existe antes de eliminar el perfil
+        // Eliminar la foto del almacenamiento si existe
         if ($profile->profile_ph) {
             Storage::disk('public')->delete($profile->profile_ph);
         }
+
+        // Eliminar el perfil
         $profile->delete();
+
+        // Redirigir con mensaje de éxito
         return redirect()->route('profiles.index')->with('success', 'Perfil eliminado exitosamente.');
     }
 }
