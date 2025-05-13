@@ -1,9 +1,9 @@
 @extends('layouts.appHome')
 
-@section('search_content')
-    @include('components.search')
-@endsection
-
+    @section('search_content')
+            @include('components.search')
+    @endsection
+    
 @section('content')
     <div class="container mx-auto px-6 py-8">
         {{-- Botones de vista --}}

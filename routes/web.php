@@ -30,6 +30,5 @@ Route::resource('statistics', StatisticController::class);
 // ruta para los omr 
 Route::get('pruebasomr',[OrmControllers::class,'consultas']);
 
-
 //Configurations fget
 Route::get('/configurations', [ConfigurationController::class, 'index'])->name('configurations');

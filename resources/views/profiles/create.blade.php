@@ -135,22 +135,6 @@
             </div>
 
             <div class="form-group">
-                <label for="configurations_id" class="block text-sm font-medium text-gray-700">Configuración de Bicicleta</label>
-                <div class="mt-1">
-                    <select id="configurations_id" name="configuration_id"
-                            class="mt-1 block w-full py-3 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        <option value="" disabled selected>Selecciona la configuración de tu bici (opcional)</option>
-                        @foreach ($configurations as $id => $name)
-                            <option value="{{ $id }}">{{ $name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                @error('configuration_id')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="form-group">
                 <label for="interest_places" class="block text-sm font-medium text-gray-700">Lugares de Interés Adicionales</label>
                 <div class="mt-1">
                     <select multiple name="interest_places[]" id="interest_places"
