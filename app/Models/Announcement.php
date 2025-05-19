@@ -14,4 +14,12 @@ class Announcement extends Model
     {
         return $this->belongsTo(User::class, 'moderator_id');
     }
+
+    protected $fillable = [
+        'title',
+        'content',
+        'category',
+        'image_url',
+        'moderator_id',
+    ];
 }

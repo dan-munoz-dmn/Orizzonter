@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('news.index') }}" class="flex items-center gap-4 p-2 rounded-md hover:bg-gray-100 transition-colors duration-200 homeLinks">
+                        <a href="{{ route('announcements.index') }}" class="flex items-center gap-4 p-2 rounded-md hover:bg-gray-100 transition-colors duration-200 homeLinks">
                             <i class="material-icons text-yellow-500">people</i>
                             <span class="sidebar-label">Noticias</span>
                         </a>
@@ -99,6 +99,7 @@
             <h1 class="text-xl font-semibold text-gray-800">@yield('title')</h1>
             @yield('search_content')
         </div>
+        
         <div class="md:h-[775px] mx-5 mt-5 rounded-t-lg">
             @yield('content')
         </div>

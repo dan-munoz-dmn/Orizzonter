@@ -42,7 +42,7 @@
                         <p class="text-gray-600 text-sm mb-2">Publicado por: <span class="font-medium text-green-500">{{ $announcement->moderator->name }}</span></p>
                         <p class="text-gray-700 mb-4 line-clamp-3">{{ $announcement->content }}</p>
                         <div class="flex justify-between items-center">
-                            <a href="{{ route('announcements.show', $announcement->id) }}" class="text-blue-500 hover:text-blue-700 hover:underline">Ver detalles</a>
+                            <a href="{{ route('announcements.edit', $announcement->id) }}" class="text-blue-500 hover:text-blue-700 hover:underline">Editar</a>
                             <div class="text-gray-500 text-sm">
                                 Publicado: {{ $announcement->created_at->format('d/m/Y') }}
                             </div>
